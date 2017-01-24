@@ -1,0 +1,32 @@
+﻿Stack ADT
+
+CS 173: Intermediate Computer Science
+
+Overview:
+The Stack data structure is container class where you can access the data only at one end. For example, you can insert and remove items from one end of the list. Also, you can look at the contents only at the top of the stack, which is the last item (called the top). 
+
+Methods:
+
+constructor:
+	Creates an empty Stack with size 0
+
+push: 
+	Function:      Adds item to the top of the stack.
+	Precondition:  Stack has been initialized.
+	Postcondition: item is at the top of the stack.
+
+pop:
+	Function:      Removes and returns the item from the top of the stack.
+	Precondition:  Stack has been initialized.
+	Postcondition: Top element has been removed from the stack and returned.
+top: 
+	Function:      Returns the item from the top of the stack.
+	Precondition:  Stack has been initialized.
+	Postcondition: a copy of the top element has been returned.
+
+size: 
+	Function:      Accessors for size of stack.
+	Precondition:  Stack has been initialized.
+	Postcondition: Returns size of the stack.
+
+

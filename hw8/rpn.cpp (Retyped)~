@@ -1,0 +1,63 @@
+// rpn.cpp
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <string.h>
+#include "stack.h"
+
+using namespace std;
+
+Stack func;
+
+int main()
+{
+	char input[100];
+	char* element;
+	cin.getline(input, sizeof(input)); // Take input with spaces
+
+	int length = 0, i = 0;
+	while (input[i] != '\0') { // Find length of input
+		length++;
+		i++;
+	}
+	char formula[length];
+	for (i = 0; i < length; i++)
+		formula[i] = input[i];
+	element = strtok(formula, " "); // Divide input into tokens separated by space
+
+	while (element != NULL) {
+		if (*element != '+' && *element != '-' && *element != '*' && *element != '/') { // Check if element is an integer
+			int a = atoi (element);
+			func.Push(a);
+		}
+
+		else if (func.Size() < 2) // Push zeroes onto stack if an operation is called without enough integers
+			while (func.Size() < 2)
+				func.Push(0);
+		if (*element == '+') { // Addition
+			int a = func.Pop(), b = func.Pop();
+			int c = a + b;
+			func.Push(c);
+		}
+		if (*element == '-') { // Subtraction
+			int a = func.Pop(), b = func.Pop();
+			int c = b - a;
+			func.Push(c);
+		}
+		if (*element == '*') { // Multiplication
+			int a = func.Pop(), b = func.Pop();
+			int c = a * b;
+			func.Push(c);
+		}
+		if (*element == '/') { // Division
+			int a = func.Pop(), b = func.Pop();
+			int c = b / a;
+			func.Push(c);
+		}
+		element = strtok(NULL, " "); // Go to next token
+	}
+	cout << func.Pop() << endl;
+	return 0;
+}

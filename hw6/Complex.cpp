@@ -1,0 +1,292 @@
+// James Le
+// CS 173 - Ashwin Lall
+// 03/13/2015
+// Complex.cpp
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Complex.h"
+using namespace std;
+
+/*=================================================================
+Default Constructor
+Pre: None
+Post: Construct a new Complex data type with default value set to 0
+=================================================================*/
+Complex::Complex(void)
+{
+  real = 0;
+  imag = 0;
+}
+
+/*=================================================================
+Destructor
+Pre: None
+Post: Clean up the complex class
+=================================================================*/
+Complex::~Complex(void)
+{
+  //
+}
+
+/*=================================================================
+Complex(a,b)
+Pre: a and b are real numbers
+Post: Sets real to a and imag to b
+=================================================================*/
+Complex::Complex (float a, float b)
+{
+  real = a;
+  imag = b;
+}
+
+/*=================================================================
+Copy Constructor
+Pre: source is a Complex Number
+Post: Creates a Complex data type with same real / imag as source
+=================================================================*/
+Complex::Complex (const Complex &c)
+{
+  real = c.real;
+  imag = c.imag;
+}
+
+/*==================================================================
+Addition Operator
+Pre: c is a Complex Number
+Post: Adds c to the complex number invoking the function, and returns
+a new complex number that represents their sum
+==================================================================*/
+Complex Complex::operator+ (const Complex &c)
+{
+  // (a + bi) + (c + di) = (a + c) + (b + d)i
+  Complex sum;
+  sum.real = real + c.real;
+  sum.imag = imag + c.imag;
+  return sum;
+}
+
+/*==================================================================
+Addition Operator
+Pre: number is a float
+Post: Adds number to the complex number invoking the function, and
+returns a new number that represents their sum
+==================================================================*/
+Complex Complex::operator+ (float number)
+{
+  double R = real + number;
+  double I = imag;
+
+  return Complex(R, I);
+}
+/*==================================================================
+Subtraction Operator
+Pre: c is a Complex Number
+Post: Subtracts c from the complex number invoking the function, and
+returns a new complex number that represents their difference
+==================================================================*/
+Complex Complex::operator- (const Complex &c)
+{
+  // (a + bi) - (c + di) = (a - c) + (b - d)i
+  Complex sub;
+  sub.real = real - c.real;
+  sub.imag = imag - c.imag;
+  return sub;
+}
+
+/*==================================================================
+Subtraction Operator
+Pre: number is a float
+Post: Subtracts number to the complex number invoking the function,
+and returns a new number that represents their difference
+===================================================================*/
+Complex Complex::operator- (float number)
+{
+  double R = real - number;
+  double I = imag;
+
+  return Complex(R, I);
+}
+/*==================================================================
+Multiplication Operator
+Pre: c is a Complex Number
+Post: Multiplies c to the complex number invoking the function, and
+returns a new complex number that represents their product
+==================================================================*/
+Complex Complex::operator* (const Complex &c)
+{
+  // a = real, b = imag, c = c.real, d = c.imag
+  // (a + bi) * (c + di) = (ac - bd) + (ad + bc)i
+  Complex mult;
+  mult.real = real * c.real - imag * c.imag;
+  mult.imag = real * c.imag + c.real * imag;
+  return mult;
+}
+
+/*===================================================================
+Multiplication Operator
+Pre: number is a float
+Post: Multipies number to the complex number invoking the function,
+and returns a new number that represents their product
+===================================================================*/
+Complex Complex::operator* (float number)
+{
+  double R = real * number;
+  double I = imag * number;
+
+  return Complex(R, I);
+}
+
+/*===================================================================
+Division Operator
+Pre: c is a Complex Number
+Post: Divides c from the complex number invoking the function, and
+returns a new complex number that represents their quotient
+===================================================================*/
+Complex Complex::operator/ (const Complex &c)
+{
+  // a = real, b = imag, c = c.real, d = c.imag
+  // (a + bi) / (c + di) = ((a + bi) * (c + di)) / (c^2 + d^2)
+  Complex div;
+  div.real = (real * c.real + imag * c.imag) / (c.real * c.real + c.imag * c.imag);
+  div.imag = (imag * c.real - real * c.imag) / (c.real * c.real + c.imag * c.imag);
+  return div;
+}
+
+/*====================================================================
+Division Operator
+Pre: number is a float
+Post: Divides number to the complex number invoking the function, and
+returns a new complex number that represents their quotient
+====================================================================*/
+Complex Complex::operator/ (float number)
+{
+  double R = real / number;
+  double I = imag / number;
+
+  return Complex(R, I);
+}
+
+/*===================================================================
+Assignment Operator
+Pre: source is a Complex number
+Post: Allows assignment of values between complex numbers
+===================================================================*/
+Complex Complex::operator=(const Complex &c)
+{
+  real = c.real;
+  imag = c.imag;
+
+  return *this;
+}
+
+/*===================================================================
+Conjugate Operator
+Pre: None
+Post: Returns the complex conjugate
+===================================================================*/
+Complex Complex::operator~ (void)
+{
+  Complex conj;
+
+  conj.real = real;
+  conj.imag = -imag;
+
+  return conj;
+}
+
+/*===================================================================
+Exponentiation Operator
+Pre: an integer number
+Post: Raises a complex number to an integer power
+====================================================================*/
+Complex Complex::operator^ (int number)
+{
+  Complex exp;
+  float temp1, temp2;
+
+  if(number == 0)
+    {
+      exp.real = 1;
+      exp.imag = 0;
+    }
+
+  else if(number > 0)
+    {
+      exp.real = real;
+      exp.imag = imag;
+      for (int i = 0; i < number - 1; i++)
+	{
+	  temp1 = exp.real * real - exp.imag * imag;
+	  temp2 = exp.real * imag + exp.imag * real;
+	  exp.real = temp1;
+	  exp.imag = temp2;
+	}
+    }
+
+  else if(number < 0)
+    {
+      exp.real = real;
+      exp.imag = imag;
+
+      for (int ii = 0; ii < (-number) - 1; ii++)
+	{
+	  temp1 = exp.real * real - exp.imag * imag;
+	  temp2 = exp.real * imag + exp.imag * real;
+	  exp.real = temp1;
+	  exp.imag = temp2;
+	}
+
+      float A = exp.real / (exp.real * exp.real + exp.imag * exp.imag);
+      float B = (-exp.imag) / (exp.real * exp.real + exp.imag * exp.imag);
+
+      exp.real = A;
+      exp.imag = B;
+    }
+  return exp;
+}
+
+/*======================================
+String representation for Complex
+======================================*/
+string Complex::str()
+{
+  char temp[25];
+  sprintf(temp,"%d + %di", real, imag);
+  return string(temp);
+}
+
+/*==========================================
+// Print out the complex number as a string
+===========================================*/
+std::ostream& operator<< (std::ostream &os, const Complex &c)
+{
+  if(c.getImag() == 0)
+    {
+      os << c.getReal() << endl;
+    }
+  else if(c.getImag() > 0)
+    {
+      if(c.getReal() == 0)
+	{
+	  os << c.getImag() << "i" << endl;
+	}
+      else
+	{
+	  os << c.getReal() << "+" << c.getImag() << "i" << endl;
+	}
+    }
+  else
+    {
+      if(c.getReal() == 0)
+	{
+	  os << c.getImag() << "i" << endl;
+	}
+      else
+	{
+	  os << c.getReal() << " " << c.getImag() << "i" << endl;
+	}
+    }
+  return os;
+}

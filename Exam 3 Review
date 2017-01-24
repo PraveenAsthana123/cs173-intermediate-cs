@@ -1,0 +1,121 @@
+============================================
+CS173
+Midterm Exam 3 Review
+============================================
+
+Exam: Wednesday, April 29. In class.
+Closed notes, closed book.  Pencil and Paper (no computers)
+
+
+C++ Classes:
+- be able to create basic c++ classes
+- be able to write methods for a c++ class
+- know well the example projects we have done in class
+
+Linked Lists:
+- be able to define a Node/Link class for a linked list
+- be able to write code for the basic linked list operations such as
+  > insert
+  > find
+  > traverse
+  > delete
+- be able to use a linked list to implement a stack, queue or list ADT
+- be able to write routines for stack/queue/list classes using linked lists.
+- be able to work with a singly linked list or doubly linked list.
+- be able to apply the basic concepts of linked lists to other linked list structures.
+- be able to write the four methods needed for dynamic memory allocation
+  > default constructor
+  > copy constructor
+  > destructor
+  > assignment operator
+
+OTHER:
+Exceptions:
+- know the basics of the try/throw/catch
+- be familiar with our example in the list class
+- be able to write parts of code that throw or catch exceptions
+
+Testing: 
+- know what a unit test is. 
+- know black box vs white box testing.
+
+Applications:
+- be familiar with the RPN calculator
+- be familiar with the Wendy's queue simulation
+
+
+==== previous topics may be part of exam =======
+
+
+Pointers and Addresses
+- know the address operator &
+- know the dereferencing operator *
+- know how to declare, assign and use pointer varaiables
+- know the memory model (picture) of a pointer variable
+- know the connection between arrays and pointers
+
+Dynamic Memory Allocation
+- know the new and delete commands
+- be able to allocate and deallocate different data items (variables, arrays, etc)
+- be able to identify and describe memory leaks
+- be familiar with the use of dynamic memory in our stack program
+
+C++ Classes
+- know the relationship between an ADT, a C++ Class, and an object
+- know how to declare a class
+- be familiar with private and public parts
+- know how to declare and define a class method
+- know how to overload a method
+- know how to implement a C++ operator in the class
+- know the different kinds of class overhead methods such as constructors, destructors, etc.
+- know the methods necessary for dynamic memory allocation in classes
+- know the difference between a deep and shallow copy
+- be able to write C++ classes, methods and code
+
+ADT
+- Define abstract data type
+- Define abstraction
+- Define Class and Object
+- Discuss what an ADT is.
+
+C++ BASICS
+- Be able to write simple C++ programs or parts of programs.
+- Variables + Data Types + Arithmetic Operations.
+- Decisions (if, switch), Boolean Conditions.
+- Iteration (for, while, do-while).
+- Functions and Parameters.
+- Arrays
+
+SEACHING
+- Know linear search.
+- Know binary search.
+- Be able to write these algorithms either as iterative or recursive code.
+- Know their run-time characteristics.  
+
+SORTING
+- Know bubble sort.
+- Know selection sort.
+- Know insertion sort.
+- Know merge sort.
+- Know quick sort.
+Be able to write the algorithm for any of these five. 
+- Know their performance characteristics.
+
+RUN TIME ANALYSIS
+- Be able to analyze a simple algorithm and give a run time estimate.
+- Be familiar with O() notation.
+
+RECURSION
+- Be able to take a problem and list/describe the base case(s) and recursive case.
+- Be able to articular how a problem can be solved by knowing the solution to a smaller version of that same problem. 
+- Be able to write small recursive algorithms (see practice sheet and in class examples)
+- Know mergesort and quicksort
+- Be able to discuss run-time of recursive algorithms
+- Know simple recursive definitions and mathematical formulas.
+
+
+
+
+
+
+

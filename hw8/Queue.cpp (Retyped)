@@ -1,0 +1,159 @@
+// queue.cpp
+
+#include <iostream>
+#include "queue.h"
+using namespace std;
+
+// constructors
+
+// Default: A new empty linked list with head and tail pointing NULL
+Queue::Queue()
+{
+	head = NULL; // head of linked list
+	tail = NULL; // tail of linked list
+	size_ = 0; // current size of the linked list
+	front = 0; // item value of the head
+}
+
+// Copy constructor
+Queue::Queue(const Queue& source)
+{
+	copy(source); // call the copy function
+}
+
+void Queue::copy(const Queue& source)
+{
+	// create pointers snode and node
+	ListNode *snode, *node;
+
+	snode = source.head; // make snode the head of the source list
+	if (snode != NULL) // check if there is something in the source list
+	{
+		node = head = new ListNode(snode->item_);
+		snode = snode->link_; // set snode to the next point in the linked list
+	}
+	while (snode != NULL)
+	{
+		node->link = new ListNode(snode->item_);
+		node = node->link_; // set node to the next point in the linked list
+		snode = snode->link_; // set snode to the next point in the linked list
+	}
+	size_ = source.size_; // copy the size of the current list to the size of the source list
+} // end copy
+
+// Enqueue: The enqueue operation appends an item in the Node list
+// Pre: item is an integer
+// Post: this item is enqueued to the end of the Node list
+void Queue::enqueue(const ItemType& item)
+{
+	// create two Node pointers
+	ListNode *node, *newNode;
+
+	// set item
+	newNode = new ListNode(item);
+
+	if (head != NULL) // if there is something in the list
+	{
+		// find the tail
+		node = _find();
+		
+		// have the tail point to newNode
+		node->link_ = newNode;
+
+		// reset tail to newNode
+		tail = node->link_;
+	}
+	else // if there is nothing in the list
+	{
+		head = newNode;
+
+		// set front to the item at head
+		front = head->item_;
+	}
+
+	// increment size
+	size_++;
+} // end enqueue
+
+
+// Find: The method attempts to find and return the tail of the list
+// Pre: None
+// Post: This function will find the tail of the linked list
+ListNode* Queue::_find()
+{
+	// create a node pointer set to the head
+	ListNode *node = head;
+
+	// find the last node in the list
+	for (int i = 0; i < size_ - 1; i++)
+		node = node->link_;
+
+	// set tail to Node
+	tail = node;
+
+	return tail;
+} // end find
+
+// Dequeue: Remove head and reset to next node in this list (if applicable)
+// Pre: size > 0
+// Post: return the value of the 1st node
+ItemType Queue::dequeue()
+{
+	// create two Node Pointers
+	ListNode *node, *dnode;
+
+	// create ItemType called item
+	ItemType item;
+
+	if (size_ - 1 > 0) // check to see if there is anything to delete
+	{
+		// set dnode to the value of the head
+		dnode = head;
+
+		// set head to the next point in the linked list
+		head = head->link_;
+
+		// reset Front to the new item
+		front = head->item_;
+	
+		// obtain the value in dnode
+		item = dnode->item_;
+		
+		// delete previous head
+		delete dnode;
+	} // end if
+	// decrement size
+	size_--;
+return item;
+} // end dequeue
+
+// Destructor
+Queue::~Queue()
+{
+	dealloc(); // calls deallocate method
+} // end destructor
+
+// Deallocate
+void Queue::dealloc()
+{
+	ListNode *node, *dnode;
+	node = head;
+	while (node != NULL)
+	{
+		dnode = node;
+		node = node->link_;
+		delete dnode;
+	} // end while
+} // end dealloc
+
+std::ostream& operator<<(std::ostream &os, const Queue &q)
+{
+	ListNode *node = list.head;
+
+	while (node != NULL)
+	{
+		os << node->item_<< " ";
+		node = node->link_;
+	}
+	os << std::endl;
+}

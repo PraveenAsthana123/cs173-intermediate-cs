@@ -1,0 +1,165 @@
+// list.cpp
+// (Note: Documentation omitted for space)
+
+#include "list.h"
+
+LList::LList()
+{
+	head = NULL;
+	current = NULL;
+	size = 0;
+}
+
+LList::LList(const LList& source)
+{
+	copy(source);
+}
+
+LList::~LList()
+{
+	dealloc();
+}
+
+LList& LList::operator=(const LList& source)
+{
+	dealloc();
+	copy(source);
+
+	return *this;
+}
+
+void LList::append(const ItemType& x)
+{
+	ListNode *node, *newNode;
+	newNode = new ListNode(x);
+
+	if (head != NULL)
+	{
+		node = _find(size - 1);
+		node->link = newNode;
+	}
+	else
+		head = newNode;
+	size++;
+}
+
+void LList::insert(int index, const ItemType& x)
+{
+	if ((index < 0) || (index > size_))
+		throw IndexError();
+	insert(head, index, x);
+}
+
+void LList::insert(ListNode* front, int index, const ItemType& x)
+{
+	if (index == 0)
+	{
+		head = new Node(x, head);
+		size++;
+	}
+	else if (index == 1)
+	{
+		front->link = new Node(x, front->link);
+		size++;
+	}
+	else
+		insert(front->link, index - 1, x);
+}
+
+ItemType LList::pop(int index)
+{
+	if ((index < -size) || (index >= size))
+		throw IndexError();
+	if (index < 0)
+		index = index + size;
+	return _delete(index);
+}
+
+ItemType& LList::operator[](int index)
+{
+	if ((index < -size) || (index >= size))
+		throw IndexError();
+	if (index < 0)
+		index = index + size;
+	Node *node = _find(index);
+	return node->item_;
+}
+
+void LList::copy(const & source)
+{
+	ListNode *snode, *node;
+	snode = source.head;
+	if (snode != NULL)
+	{
+		node = head = new Node(snode->item_);
+		snode = snode->link_;
+	}
+	while (snode != NULL)
+	{
+		node->link_ = new Node(snode->item_);
+		node = node->link_;
+		snode = snode->link_;
+	}
+
+	size = source.size;
+}
+
+void LList::dealloc()
+{
+	ListNode *node, *dnode;
+	node = head;
+	while (node != NULL)
+	{
+		dnode = node;
+		node = node->link_;
+		delete dnode;
+	}
+}
+
+Node* LList::_find(int index)
+{
+	if ((index < -size) || (index >= size))
+		throw IndexError();
+	if (index < 0)
+		index = index + size;
+	Node *node = head;
+	for (int i = 0; i < index; i++)
+		node = node->link_;
+	return node;
+}
+
+ItemType LList::_delete(int index)
+{
+	if ((index < 0) || (index >= size))
+		throw IndexError();
+	Node *node, *dnode;
+	ItemType item;
+
+	if (index == 0)
+	{
+		dnode = head;
+		head = head->link_;
+		item = dnode->item_;
+		delete dnode;
+	}
+	else
+	{
+		node = _find(index - 1);
+		if (node != NULL)
+		{
+			dnode = node->link_;
+			node->link_ = node->link_->link_;
+			item = dnode->item_;
+			delete dnode;
+		}
+	}
+	size--;
+	return item;
+}
+
+void LList::resetFront()
+{
+	current = head;
+}
+
+ItemType

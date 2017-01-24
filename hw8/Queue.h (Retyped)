@@ -1,0 +1,73 @@
+// queue.h
+
+#ifndef _QUEUE_H
+#define _QUEUE_H
+#include "list.h"
+#include "node.h"
+#include <iostream>
+
+typedef int ItemType;
+class Queue
+{
+public:
+	// Constructors
+
+	// Function: constructs Queue linked list
+	// Precondition: None
+	// Postcondition: initializes an empty list with head and tail both pointing to NULL
+	Queue();
+
+	// Copy constructor
+	Queue(const Queue& source);
+
+	// Destructor
+	~Queue();
+
+	// Operations
+
+	// Function: appends an item in the Node list
+	// Precondition: List is initialized, item is of type ItemType
+	// Postcondition: item is enqueued to the end of the Node list, and size is increased
+	void enqueue(const ItemType& item);
+
+	// Function: removes the head of the list and returns its value
+	//		sets head pointer to the next node in the list
+	// Precondition: List has at least one item
+	// Postcondition: returns the integer value of the 1st node, and size is decreased
+	Itemtype dequeue();
+
+	// Function: the value of the head
+	// Precondition: List has at least one item
+	// Postcondition: returns the value of the head
+	int getFront() { return front; }
+
+	// Function: the amount of nodes in the Node list
+	// Precondition: List is initialized
+	// Postcondition: returns the number of nodes in the linked list
+	int size() { return size_; }
+
+private:
+	// data elements
+
+	// current amount of items in the list
+	int size_;
+	// head-> item
+	int front;
+	ListNode *head, // head of the linked list
+		 *tail; // tail of the linked list
+
+	// methods
+	void copy(const Queue& source); // copy source list to this list
+	void dealloc(); // deallocate the list
+	ListNode* _find(); // return pointer to node at index
+};
+
+class IndexError { }; // index error exception
+class StopIteration { }; // stop iteration exception
+
+// declare nonmember input output functions
+std::ostream& operator<<(std::ostream &os, const Queue &q);
+
+#endif
+
+

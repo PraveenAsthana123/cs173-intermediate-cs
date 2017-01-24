@@ -1,0 +1,16 @@
+p 1
+p 2
+p 3 
+s
+t
+x
+p 4
+p 5
+t
+p 6
+p 7
+s
+x
+t
+x
+q

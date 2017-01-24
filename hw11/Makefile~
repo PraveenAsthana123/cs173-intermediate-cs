@@ -1,0 +1,4 @@
+testSet.o: testSet.cpp
+	g++ testSet.cpp -o testSet
+clean:
+	rm test *.o

@@ -1,0 +1,66 @@
+// qsim.cpp
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Queue.h"
+
+int simulator()
+{
+	int interation;
+	int arrv, serv;
+	int freetime; // the certain second when it is available for next customer
+	int cometime; // the certain second when a customer is coming in
+	int servtime; // how many seconds it will take for serving the customer
+	double waitpeople = 0; // how many customers that had to wait
+	int time[37][37]; // the 2D array to store the waiting time for each customer who has waited in the waiting list
+	int top = -1; // keep tracking which customer is the top of the waiting list
+	int currpeople = 0; // keep tracking how many customers are currently in the waiting list
+	int check = 0; // for stricting the top plus plus under the if (j == cometime)
+	int place = -1;
+
+	for (int z = 0; z < 37; z++) // set every element in the 2D array into 0
+	{
+		for (int x = 0; x < 37; x++)
+		{
+			time[z][x] = 0;
+		}
+	}
+
+	Queue arrival: // arrival queue for storing the arrival time
+	Queue service; // service queue for storing the service time
+	Queue waiting; // waiting queue for the customers that have to wait
+	Queue waitingserv; // the service time queue cooperates with the waiting queue
+
+	std::cin>>interation; // store the total number of customers
+
+	for (int i = 0; i < interation; i++) // store the data in arrival queue and service queue
+	{
+		std::cin>>arrv;
+		std::cin>>serv;
+		arrival.enqueue(arrv);
+		service.enqueue(serv);
+	}
+
+	cometime = arrival.dequeue(); // get the time when the first customer comes in
+	servtime = service.dequeue(); // get the service time for the first customer
+	freetime = cometime + servtime;
+
+
+	for (int j = 1; j < 14401; j++)
+	{
+		// still need to check the case when there is only one customer left
+		if (j == cometime) // when the time reaches the certain second when a customer comes
+		{
+			// this algoritm will assume the last customer is taken care of, so will directly check the next customer
+			cometime = arrival.dequeue();
+			servtime = service.dequeue();
+			if (cometime >= freetime)
+			// when there is nobody in the line and the time is after the service time so the customer doesn't have to wait
+			{
+				freetime = cometime + servtime; // just update the time when will this customer be done
+			}
+			else // when there are people in front of the coming customer, need to move this customer into waiting queue
+			{
+				
+

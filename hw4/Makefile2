@@ -1,0 +1,2 @@
+sort2: sort2.cpp
+	g++ sort2.cpp -o sort2

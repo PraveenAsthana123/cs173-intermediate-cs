@@ -1,0 +1,106 @@
+/*===========================================================
+Stack Implementation (Homework 5)
+James Le
+03/05/2015
+CS 173, Spring 2015
+============================================================*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+class Stack
+{
+private:
+  int size;
+  int *a;
+  int top;
+
+public:
+
+  Stack(void);
+  ~Stack(void);
+  void push(int k);
+  int pop(void);
+  int sizes(void);
+
+};
+
+Stack::Stack(void)
+{
+  size = 5;
+  a = new int[size];
+  top = -1;
+}
+
+Stack::~Stack(void)
+{
+  delete [] a;
+}
+
+void Stack::push(int k)
+{
+  if(top == size - 1)
+    {
+      //cout << "oh" << endl;
+      int *na = new int[size + 5];
+      int i;
+      for (i = 0; i < size; i++)
+	{
+	  na[i] = a[i];
+	}
+      delete [] a;
+      a = na;
+      size = size + 5;
+    }
+  a[top + 1] = k;
+  top++;
+}
+
+int Stack::pop(void)
+{
+  if(top != -1)
+    {
+      top--;
+      return a[top + 1];
+    }
+  else
+    cout<<"Error, you cannot pop from an empty array!"<<endl;
+    exit(1);
+    return -1;
+}
+
+int Stack::sizes(void)
+{
+  return top + 1;
+}
+
+main(void)
+{
+  Stack r1;
+  char m = 'o';
+  while(m != 'q')
+    {
+      //cout << "enter command" << endl;
+      cin >> m;
+      if(m == 'p')
+	{
+	  int k;
+
+	  cin >> k;
+	  r1.push(k);
+	}
+
+      if(m == 'x')
+	{
+	  cout << r1.pop() << endl;
+	}
+
+      if(m == 's')
+	{
+	  cout << r1.sizes() << endl;
+	}
+    }
+}

@@ -1,0 +1,7 @@
+all: Test_list
+
+Test_list: Test_list.o
+	g++ -o Test_list Test_list.o
+
+Test_list.o: Test_list.cpp List.h List.cpp
+	g++ -c Test_list.cpp

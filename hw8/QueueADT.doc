@@ -1,0 +1,22 @@
+Queue ADT
+
+CS 173: Intermediate Computer Science
+
+Overview:
+The Queue class stores and manipulates array via Linked Link. This Queue class supports all the operations for the Queue array including enqueue, dequeue, front and size.
+
+Methods:
+Constructors:
+
+Default: A new empty linked list with head pointer pointing NULL and tail pointer pointing NULL
+newNode: A new Node data type with value NULL and pointer pointing to NULL
+setNode(item, link): Specify a new Node data type by giving its value and pointer link
+
+Operators:
+
+enqueue: The enqueue operation appends the new node in the Node list
+dequeue: The dequeue operation removes the first node, returns the value of first node, and make the head pointer pointing to the second node
+front: The front operation returns the value of the first node
+size: The size operation returns how many nodes are there in the Node list
+
+

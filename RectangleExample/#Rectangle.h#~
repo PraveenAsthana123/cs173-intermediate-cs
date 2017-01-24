@@ -1,0 +1,29 @@
+// Rectangle.h
+
+#ifndef _RECTANGLE_H_
+#define _RECTANGLE_H_
+
+#include <string>
+using namespace std;
+
+class Rectangle
+{
+ public:
+  // Function: Initialize (construct) the rectangle object
+  // Precondition: height and width are integers
+  // Postcondition: Rectangle is initialized with height and width
+parameters
+  Rectangle(int height, int width):
+
+  // accessors
+  int getHeight() const;
+
+  int getWidth() const;
+
+  // modifiers
+  void setHeight(int height);
+
+  void setWidth(int width);
+
+  // other methods
+

@@ -1,0 +1,175 @@
+//=============================================================
+// James Le
+// April 17, 2015
+// CS 173, Spring 2015, Ashwin Lall
+// test_list.cpp
+// This file does unit testing on each method of the list class
+//=============================================================
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include "list.h"
+#include <assert.h>
+
+//=============================================================
+void testDefaultConstructor(void)
+{
+  List list;
+  assert (list.length() == 0);
+  assert (string(list.str()) == string("[]"));
+}
+
+//=============================================================
+void testCopyConstructor(void)
+{
+  List list1;
+  list1.append(1776);
+  list1.append(1792);
+
+  List list2(list1);
+  assert (list2.length() == 2);
+  assert (string(list2.str()) == string("[1776, 1792]"));
+}
+
+//=============================================================
+void testAssignmentOperator(void)
+{
+  List list1;
+  list1.append(1776);
+  list1.append(1792);
+
+  List list2 = list1;
+  assert (list2.str() == list1.str());
+}
+
+//=============================================================
+void testAppend(void)
+{
+  List list;
+  list.append(1776);
+  assert (list.length() == 1);
+  assert (string(list.str()) == string("[1776]"));
+  list.append(1792);
+  assert (list.length() == 2);
+  assert (string(list.str()) == string("[1776, 1792]"));
+}
+
+//=============================================================
+void testInsert(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+
+  list.insert(0,11);
+  assert(list.length() == 3);
+  assert(string(list.str()) == string("[11,1776,1792]"));
+
+  list.insert(2,12);
+  assert(list.length() == 4);
+  assert(string(list.str()) == string("[11,1776,1792,12]"));
+
+  list.insert(2,13);
+  assert(list.length() == 5);
+  assert(string(list.str()) == string("[11,1776,13,1792,12]"));
+}
+
+//=============================================================
+void testPop(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+  list.insert(0,11);
+  list.insert(2,12);
+  list.insert(2,13);
+
+  list.pop(4);
+  assert(list.length() == 4);
+  assert(string(list.str()) == string("[11,1776,13,1792]"));
+
+  list.pop(1);
+  assert(list.length() == 3);
+  assert(string(list.str()) == string("[11,13,1792]"));
+
+  list.pop(0);
+  assert(list.length() == 2);
+  assert(string(list.str()) == string("[13,1792]"));
+
+  list.append(14);
+  list.pop(-2);
+  assert(list.length() == 2);
+  assert(string(list.str()) == string("[13,14]"));
+}
+
+//=============================================================
+void testOperator(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+  list.append(1799);
+  assert(list.length() == 3);
+  assert(string(list.str()) == string("[1776,1792,1799]"));
+  assert(list[0] == 1776);
+  assert(list[-1] == 1799);
+  assert(list[1] == 1792);
+}
+
+//=============================================================
+void testIndex(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+  assert(list.index(1776) == 0);
+  assert(list.index(1792) == 1);
+
+  list.insert(0,11);
+  list.insert(2,12);
+  assert(list.index(12) == 3);
+  assert(list.length() == 4);
+  assert(string(list.str()) == string("[11,1776,1792,12]"));
+}
+
+//=============================================================
+void testNext(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+  list.append(1799);
+  list.resetForward();
+  assert(list.next() == 1776);
+  assert(list.next() == 1792);
+}
+
+//=============================================================
+void testPrevious(void)
+{
+  List list;
+  list.append(1776);
+  list.append(1792);
+  list.append(1799);
+  list.resetReverse();
+  assert(list.prev() == 1799);
+  assert(list.prev() == 1792);
+}
+
+//=============================================================
+int main (void)
+{
+  testDefaultConstructor();
+  testCopyConstructor();
+  testAssignmentOperator();
+  testAppend();
+  testInsert();
+  testPop();
+  testOperator();
+  testIndex();
+  testNext();
+  testPrevious();
+
+  return 0;
+}

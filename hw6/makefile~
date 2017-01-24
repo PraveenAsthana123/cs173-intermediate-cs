@@ -1,0 +1,10 @@
+all: Complex.o main.o 
+	g++ Complex.o main.o -o main
+
+Complex.o:Complex.cpp Complex.h 
+	g++ -c Complex.cpp
+
+main.o: main.cpp 
+	g++ -c main.cpp
+
+clean: rm main *.o

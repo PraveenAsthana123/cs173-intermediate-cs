@@ -1,0 +1,47 @@
+// stack.h
+
+#ifndef _STACK_H
+#define _STACK_H
+#include "list.h"
+#include "node.h"
+#include <iostream>
+
+typedef int ItemType;
+class Stack
+{
+public:
+	// basic operations
+
+	// Function: returns size of Stack
+	// Precondition: Stack is initialized
+	// Postcondition: returns the number of elements in stack
+	int Size();
+
+	// Function: adds elements to Stack
+	// Precondition: Stack is initialized
+	// Postcondition: item is added to top of Stack, and size is increased
+	void Push(ItemType item);
+
+	// Function: returns top element of Stack and removes it from the Stack
+	// Precondition: Stack has at least one element
+	// Postcondition: returns and removes top element of Stack, and size is decreased
+	ItemType Pop();
+
+	// Function: returns top element of Stack
+	// Precondition: Stack has at least one element
+	// Postcondition: returns top element of Stack
+	ItemType Top();
+
+	// constructor
+
+	// Function: constructs Stack object
+	// Precondition: None
+	// Postcondition: initializes an empty Stack with size 0
+	Stack();
+
+private:
+	LList items;
+	int size;
+};
+
+#endif

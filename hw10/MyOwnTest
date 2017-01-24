@@ -1,0 +1,50 @@
+//===================================================================================
+// James Le - CS173
+// April 26, 2015
+// Homework 10 (Test File)
+// This file does the unit testing for two different list objects of different types.
+//===================================================================================
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sstream>
+#include "List.h"
+using namespace std;
+
+int main()
+{
+    List<int> a;                                                        //List a type int
+    a.append(1);
+    a.append(2);
+    a.append(3);
+   
+    cout << "List is: " << a << endl;                                   //few simple commands
+    cout << "Pop: " << a.pop() << endl;
+    cout << "Pop: " << a.pop() << endl;
+    cout << "Pop: " << a.pop() << endl;
+    cout << "List is now: " << a << endl;
+    cout << "List's length is: " << a.length() << endl;
+    cout << "List insert: 10 at index 0" << endl;
+    a.insert(0,10);
+    cout << "After insert list is: " << a.str() << endl;
+
+    
+    List<float> b;                                                      //List b type float
+    cout << "b insert 1 at index 0, then 2 at 1, and 3 at 2" << endl;
+    b.insert(0,1);
+    b.insert(1,2);
+    b.insert(2,3);
+    cout << "This is the result: " << b << endl;
+    b.resetForward();
+    cout << "1st b next is: " << b.next() << endl;
+    cout << "2nd b next is: " << b.next() << endl;
+    cout << "3rd b next is: " << b.next() << endl;
+    cout << "Find 1: " << b.index(1) << endl;
+    
+    List<float> c(b);                                                   //Test copy constructor
+    cout << "C is: " << c << endl;
+    List<int> d = a;                                                    //Test assignment operator
+    cout << "D is: " << d.str() << endl;
+    return 0;
+}

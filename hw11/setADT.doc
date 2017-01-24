@@ -1,0 +1,23 @@
+﻿/*====================================================================================================
+James Le - CS173
+May 7, 2015
+Homework 11 (Set ADT)
+Overview: The set data structures stores different items of the same data type. This ADT supports many operations, including an insert method, a remove method, a contains method, a size method, an union method, and an intersection method. This set class will be implemented using doubly linked list in
+previous project.
+====================================================================================================*/
+
+
+Constructor:
+Default Constructor: Creates an empty set with no items.
+Copy Constructor: Creates a new set that is an exact copy of an existing set.
+Destructor: Cleans up the memory for an existing set to be deleted.
+Assignment Operator: Makes a copy of an existing set for the assigned set.
+
+Operator:
+Insert: Adds a new item in the set.
+Remove: Removes the desired item in the set and this method does nothing if the item is not in the set.
+Contains: This method goes through the set. If the item is in the set, it returns true. Else, it returns false.
+Union: This method takes another set (called source) as a parameter and adds all of the current set's elements into this new set source.
+Intersection: This method takes another set (called source) as a parameter and only retains the elements of the current set that are also in the set source.
+Size: Returns the size of the set.
+

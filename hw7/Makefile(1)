@@ -1,0 +1,12 @@
+ls hwall: Complex.o image.o
+	g++ Complex.o image.o -o image
+
+Complex.o:Complex.cpp Complex.h
+	g++ -c Complex.cpp
+
+image.o: image.cpp
+	g++ -c image.cpp
+
+clean:
+	rm image *.o
+

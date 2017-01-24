@@ -1,0 +1,17 @@
+/*===========================================================
+Stack Implementation (Homework 5)
+James Le
+03/05/2015
+CS 173, Spring 2015
+============================================================*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <time.h>
+using namespace std;
+
+int *list = new int[size];
+int *temp = new int[size + 5];
+for
+

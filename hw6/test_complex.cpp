@@ -1,0 +1,130 @@
+// test_complex.cpp
+// James Le - CS 173
+// 03/24/2015
+
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Complex.h"
+
+void testConstructor()
+{
+  Complex c1(1,3);
+  Complex c2(5,5.9);
+  assert(c1.str() == "1 + 3i");
+  assert(c2.str() == "5 + 5.9i");
+}
+
+void testCopyConstructor()
+{
+  Complex c(3,9);
+  Complex c2(c);
+  assert(c2.str() = "3 + 9i");
+}
+
+void testAssignment()
+{
+  Complex c(4,4.1);
+  Complex c2;
+  c2 = c;
+  assert(c2.str() == "4 + 4.1i");
+}
+
+void testAddition()
+{
+  Complex c1(2,3);
+  Complex c2(3.5,1);
+
+  Complex c3(c1 + c2);
+  assert(c3.str() == "5.5 + 4i");
+
+  Complex c4(c1 + 7);
+  assert(c4.str() == "9 + 3i");
+
+  Complex c5(c2 + 3);
+  assert(c5.str() == "6.5 + 1i");
+}
+
+void testSubtraction()
+{
+  Complex c1(5,8);
+  Complex c2(2,5.4);
+
+  Complex c3(c1 - c2);
+  assert(c3.str() == "3 + 2.6i");
+
+  Complex c4(c1 - 1);
+  assert(c4.str() == "4 + 8i");
+
+  Complex c5(c2 - 1);
+  assert(c5.str() == "1 + 4.4i");
+}
+
+void testMultiplication()
+{
+  Complex c1(2,2);
+  Complex c2(3.1,4);
+
+  Complex c3(c1 * c2);
+  assert(c3.str() == "-1.9 + 14.1i");
+
+  Complex c4(c1 * 4);
+  assert(c4.str() == "8 + 8i");
+
+  Complex c5(c2 * 6);
+  assert(c5.str() == "18.1 + 24i");
+}
+
+void testDivision()
+{
+  Complex c1(10,12);
+  Complex c2(2,3);
+
+  Complex c3(c1 / c2);
+  assert(c3.str() == "(56/13 - (6/13)i");
+
+  Complex c4(c1 / 2);
+  assert(c4.str() == "5 + 6i");
+}
+
+void testConjugate()
+{
+  Complex c(3,6.8);
+  Complex c2(~c);
+  assert(c2.str() == "3 - 6.8i");
+}
+
+void testExponentiation()
+{
+  Complex c(4,2);
+  int i;
+  Complex c2(c ^ i);
+
+  if(i == 0)
+    {
+      assert(c2.str() == "1 + 0i");
+	}
+  else if(i == 2)
+    {
+      assert(c2.str() == "12 + 16i");
+    }
+  else if(i == -2)
+    {
+      assert(c2.str() == "0.03 - 0.04i");
+    }
+}
+
+int main()
+{
+  testConstructor();
+  testCopyConstructor();
+  testAssignment();
+  testAddition();
+  testSubtraction();
+  testMultiplication();
+  testDivision();
+  testConjugate();
+  testExponentiation();
+
+  return 0;
+}

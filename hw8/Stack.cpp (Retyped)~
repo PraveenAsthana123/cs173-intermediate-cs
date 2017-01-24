@@ -1,0 +1,48 @@
+// stack.cpp
+#include "stack.h"
+
+========================================================
+// Function: constructs Stack object
+// Precondition: None
+// Postcondition: initializes an empty Stack with size 0
+========================================================
+Stack::Stack()
+{
+	size = 0;
+	items;
+}
+
+// Function: returns size of Stack
+// Precondition: Stack is initialized
+// Postcondition: returns number of elements in Stack
+int Stack::Size()
+{
+	return size;
+}
+
+// Function: adds elements to Stack
+// Precondition: Stack is initialized, item is of type ItemType
+// Postcondition: item is added to top of Stack, and size is increased
+void Stack::Push(ItemType item)
+{
+	items.append(item);
+	size++;
+}
+
+// Function: returns top element of Stack and removes it from the Stack
+// Precondition: Stack has at least one element
+// Postcondition: returns and removes top element of Stack, and size is decreased
+ItemType Stack::Pop()
+{
+	size--;
+	return items.pop(size);
+}
+
+// Function: returns top element of Stack
+// Precondition: Stack has at least one element
+// Postcondition: returns top element of Stack
+ItemType Stack::Top()
+{
+	ListNode* a = items._find(size - 1);
+	return a->item_;
+}
